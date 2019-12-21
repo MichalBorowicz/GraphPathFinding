@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphPathFinding.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,17 @@ namespace GraphPathFinding
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+		public MainWindow(IMainPageViewModel context)
 		{
 			InitializeComponent();
+			this.DataContext = context.Get();
+		}
+
+		protected override void OnClosed(EventArgs e)
+		{
+			base.OnClosed(e);
+
+			Application.Current.Shutdown();
 		}
 	}
 }
