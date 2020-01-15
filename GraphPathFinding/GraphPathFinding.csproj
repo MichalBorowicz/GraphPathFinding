@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
@@ -64,15 +65,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MainPageModel.cs" />
-    <Compile Include="MainPageViewModel.cs" />
+    <Compile Include="Abstract\IComposition.cs" />
+    <Compile Include="Abstract\IDijkstra.cs" />
+    <Compile Include="Abstract\IPRM.cs" />
+    <Compile Include="Abstract\IRasterAlgorithm.cs" />
+    <Compile Include="Algorithms\Composition.cs" />
+    <Compile Include="Algorithms\Dijkstra.cs" />
+    <Compile Include="Algorithms\RasterAlgorithm.cs" />
+    <Compile Include="Helpers\Abstract\IConvertBitmapToSourceImageHelper.cs" />
+    <Compile Include="Helpers\Implementation\ConvertBitmapToSourceImageHelper.cs" />
+    <Compile Include="Models\PointModel.cs" />
+    <Compile Include="Algorithms\PRM.cs" />
     <Compile Include="Shell.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Abstract\IMainPageModel.cs" />
-    <Compile Include="Abstract\IMainPageViewModel.cs" />
     <Compile Include="Abstract\IShell.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GraphPathFinding.Properties
+namespace GraphPathFindingModels.Properties
 {
 
 
