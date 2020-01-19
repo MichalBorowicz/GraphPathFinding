@@ -22,6 +22,7 @@ namespace GraphPathFinding.Installers
 					 .Register(Component.For<IRasterAlgorithm>().ImplementedBy<RasterAlgorithm>())
 					 .Register(Component.For<IComposition>().ImplementedBy<Composition>())
 					 .Register(Component.For<IDijkstra>().ImplementedBy<Dijkstra>())
+					 .Register(Component.For<IAStarAlgorithm>().ImplementedBy<AStarAlgorithm>())
 					 .Register(Component.For<IConvertBitmapToSourceImageHelper>().ImplementedBy<ConvertBitmapToSourceImageHelper>())
 					 .Register(Component.For<MainWindow>().LifestyleTransient());
 		}

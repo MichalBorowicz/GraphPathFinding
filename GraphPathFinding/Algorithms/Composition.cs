@@ -25,25 +25,7 @@ namespace GraphPathFinding.Algorithms
 
 		private Bitmap CompositionMethod(Bitmap bitmap)
 		{
-			var squareSize = 128;
-			var width = bitmap.Width / squareSize;
-			var height = bitmap.Height / squareSize;
-
-			for (int widthCounter = 0; widthCounter < width; widthCounter++)
-			{
-				for (int heightCounter = 0; heightCounter < height; heightCounter++)
-				{
-					var widthSquareEndPixel = widthCounter * squareSize;
-					var heightSquareEndPixel = heightCounter * squareSize;
-					if (CheckEmptyArea(widthSquareEndPixel, heightSquareEndPixel, bitmap))
-					{
-						AddPointToGraph();
-					}
-					DrawLine(bitmap, widthSquareEndPixel, heightSquareEndPixel, Color.Red);
-				}
-			}
-
-
+			throw new NotImplementedException();
 
 			return bitmap;
 		}

@@ -23,6 +23,15 @@ namespace GraphPathFinding.Algorithms
 
 			return bitmap;
 		}
+
+		private void DrawSquare(Bitmap bitmap, int axisX, int axisY, Color color, int sqareSize)
+		{
+			Graphics graphics = Graphics.FromImage(bitmap);
+			var x = axisX >= sqareSize ? axisX - sqareSize : 0;
+			var y = axisY >= sqareSize ? axisY - sqareSize : 0;
+			Pen solidBrush = new Pen(Color.Red);
+			graphics.DrawRectangle(solidBrush, new Rectangle(x, y, sqareSize, sqareSize));
+		}
 		private void DrawLine(Bitmap bitmap, int axisX, int axisY, Color color)
 		{
 			Graphics graphics = Graphics.FromImage(bitmap);
@@ -32,7 +41,7 @@ namespace GraphPathFinding.Algorithms
 		}
 		private Bitmap RasterMethod(Bitmap bitmap)
 		{
-			var squareSize = 64;
+			var squareSize = 16;
 			var width = bitmap.Width / squareSize;
 			var height = bitmap.Height / squareSize;
 
@@ -42,11 +51,11 @@ namespace GraphPathFinding.Algorithms
 				{
 					var widthSquareEndPixel = widthCounter * squareSize;
 					var heightSquareEndPixel = heightCounter * squareSize;
-					if (CheckEmptyArea(widthSquareEndPixel, heightSquareEndPixel, bitmap))
+					if (CheckEmptyArea(widthSquareEndPixel, heightSquareEndPixel, bitmap, squareSize))
 					{
 						AddPointToGraph(widthSquareEndPixel, heightSquareEndPixel, squareSize, bitmap);
+					DrawSquare(bitmap, widthSquareEndPixel, heightSquareEndPixel, Color.Red, squareSize);
 					}
-					DrawLine(bitmap, widthSquareEndPixel, heightSquareEndPixel, Color.Red);
 				}
 			}
 			AssignNeighbours(bitmap);
@@ -67,7 +76,7 @@ namespace GraphPathFinding.Algorithms
 					int distance = Distance(pointA, pointB);
 					if (distance != 0 && distance < _maksDistanceFromClosestPoint)
 					{
-						ConnectTwoPointsAsNeighbours(pointA, pointB, distance);						
+						ConnectTwoPointsAsNeighbours(pointA, pointB, distance);
 					}
 				}
 			}
@@ -85,27 +94,35 @@ namespace GraphPathFinding.Algorithms
 			points.Add(point);
 			DrawLine(bitmap, point.AxisX, point.AxisY, Color.Blue);
 		}
-		private bool CheckEmptyArea(int maxWidth, int maxHeight, Bitmap bitmap)
+		private bool CheckEmptyArea(int maxWidth, int maxHeight, Bitmap bitmap, int squareSize)
 		{
 			var onlyWhitePixel = true;
 
-				int widthPixelLenght = 0;
-				while (widthPixelLenght <= maxWidth && onlyWhitePixel)
+			int widthPixelLenght = maxWidth - squareSize;
+			if (widthPixelLenght < 0)
+			{
+				widthPixelLenght = 0;
+			}
+			while (widthPixelLenght <= maxWidth && onlyWhitePixel)
+			{
+				int heightPixelLenght = maxHeight - squareSize;
+				if (heightPixelLenght < 0)
 				{
-					int heightPixelLenght = 0;
-					while (heightPixelLenght <= maxHeight && onlyWhitePixel)
-					{
-					var pixel = bitmap.GetPixel(widthPixelLenght, heightPixelLenght);
-						if (pixel.B == 0 && pixel.G == 0 && pixel.R == 0)
-						{
-							onlyWhitePixel = false;
-							break;
-						}
-						heightPixelLenght++;
-					}
-					widthPixelLenght++;
+					heightPixelLenght = 0;
 				}
-							
+				while (heightPixelLenght <= maxHeight && onlyWhitePixel)
+				{
+					var pixel = bitmap.GetPixel(widthPixelLenght, heightPixelLenght);
+					if (pixel.B == 0 && pixel.G == 0 && pixel.R == 0)
+					{
+						onlyWhitePixel = false;
+						break;
+					}
+					heightPixelLenght++;
+				}
+				widthPixelLenght++;
+			}
+
 			return onlyWhitePixel;
 		}
 

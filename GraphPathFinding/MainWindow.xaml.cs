@@ -26,13 +26,14 @@ namespace GraphPathFinding
 	public partial class MainWindow : Window
 	{
 		private readonly IDijkstra _dijkstra;
+		private readonly IAStarAlgorithm _aStarAlgorithm;
 		private readonly IPRM _prm;
 		private readonly IComposition _composition;
 		private readonly IRasterAlgorithm _rasterAlgorithm;
 		private readonly IConvertBitmapToSourceImageHelper _convertBitmapToSourceImageHelper;
 		private Bitmap _bitmap;
 		private ICollection<PointModel> _pointModels;
-		public MainWindow(IDijkstra dijkstra, IPRM prm, IRasterAlgorithm rasterAlgorithm, IComposition composition, IConvertBitmapToSourceImageHelper convertBitmapToSourceImageHelper)
+		public MainWindow(IDijkstra dijkstra, IPRM prm, IRasterAlgorithm rasterAlgorithm, IComposition composition, IConvertBitmapToSourceImageHelper convertBitmapToSourceImageHelper, IAStarAlgorithm aStarAlgorithm)
 		{
 			InitializeComponent();
 			_bitmap = new Bitmap(@" C:\Users\Michał\source\repos\GraphPathFinding\GraphPathFinding\Resources\worldMap.png", true);
@@ -40,6 +41,7 @@ namespace GraphPathFinding
 			_composition = composition;
 			_rasterAlgorithm = rasterAlgorithm;
 			_dijkstra = dijkstra;
+			_aStarAlgorithm = aStarAlgorithm;
 			_convertBitmapToSourceImageHelper = convertBitmapToSourceImageHelper;
 			WorldMap.Source = _convertBitmapToSourceImageHelper.Convert(_bitmap);
 		}
@@ -75,6 +77,11 @@ namespace GraphPathFinding
 			_bitmap = _composition.Get(_bitmap);
 			_pointModels = _composition.GetPoints();
 			WorldMap.Source = _convertBitmapToSourceImageHelper.Convert(_bitmap);
+		}
+
+		private void AStar_Click(object sender, RoutedEventArgs e)
+		{
+			WorldMap.Source = _convertBitmapToSourceImageHelper.Convert(_aStarAlgorithm.Get(_pointModels,_bitmap));
 		}
 	}
 }

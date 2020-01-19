@@ -65,10 +65,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abstract\IAStarAlgorithm.cs" />
     <Compile Include="Abstract\IComposition.cs" />
     <Compile Include="Abstract\IDijkstra.cs" />
     <Compile Include="Abstract\IPRM.cs" />
     <Compile Include="Abstract\IRasterAlgorithm.cs" />
+    <Compile Include="Algorithms\AStarAlgorithm.cs" />
     <Compile Include="Algorithms\Composition.cs" />
     <Compile Include="Algorithms\Dijkstra.cs" />
     <Compile Include="Algorithms\RasterAlgorithm.cs" />

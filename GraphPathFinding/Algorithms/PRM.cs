@@ -84,7 +84,6 @@ namespace GraphPathFinding.Algorithms
 
 		private Bitmap ProbabilisticRoadMap(Bitmap bitmap)
 		{
-			var isPath = false;		
 			for (int i = 0; i < points.Count - 1; ++i)
 			{
 				for (int j = i + 1; j < points.Count; ++j)
@@ -94,7 +93,7 @@ namespace GraphPathFinding.Algorithms
 					int distance = Distance(pointA, pointB);
 					if (distance != 0 && distance < _maksDistanceFromClosestPoint)
 					{
-						isPath = CheckIsPathBetweenToPointsIsValid(pointA, pointB, bitmap);
+						var isPath = CheckIsPathBetweenToPointsIsValid(pointA, pointB, bitmap);
 						if (isPath)
 						{
 							ConnectTwoPointsAsNeighbours(pointA, pointB, distance);

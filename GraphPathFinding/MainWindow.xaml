@@ -9,6 +9,7 @@
 	<StackPanel>
 		<Button x:Name="PRMButton" Content="PRM Algorithm" Height="30" Width="200" Click="Button_Click_PRM"/>
 		<Button x:Name="Button" Content="Dijkstra Algorithm" Height="30" Width="200" Click="Button_Click_Dijkstra" RenderTransformOrigin="1.026,0.433" Margin="596,0"/>
+		<Button x:Name="AStar" Content="A* Algorithm" Height="30" Width="200" Click="AStar_Click"/>
 		<Button x:Name="RasterButton" Content="Raster Algorithm" Height="30" Width="200" Click="RasterButton_Click"/>
 		<Button x:Name="Composition" Content="Composition Algorithm" Height="30" Width="200" Click="Composition_Click"/>
 		<Image x:Name="WorldMap" Height="800"/>
