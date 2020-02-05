@@ -10,7 +10,7 @@ namespace GraphPathFinding.Abstract
 {
 	public interface IRasterAlgorithm
 	{
-		Bitmap Get(Bitmap bitmap);
+		Bitmap Get(string bitmapPath);
 
 		ICollection<PointModel> GetPoints();
 	}

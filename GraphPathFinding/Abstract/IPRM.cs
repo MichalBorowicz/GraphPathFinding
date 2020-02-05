@@ -11,7 +11,7 @@ namespace GraphPathFinding.Abstract
 {
 	public interface IPRM
 	{
-		Bitmap Get(Bitmap bitmap);
+		Bitmap Get(string bitmapPath);
 		ICollection<PointModel> GetPoints();
 	}
 }

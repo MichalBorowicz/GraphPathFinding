@@ -13,10 +13,10 @@ namespace GraphPathFinding.Algorithms
 	{
 		private ICollection<PointModel> points = new List<PointModel>();
 		private int _id;
-		public Bitmap Get(Bitmap bitmap)
+		public Bitmap Get(string bitmapPath)
 		{
 			points = new List<PointModel>();
-			bitmap = new Bitmap(@" C:\Users\Michał\source\repos\GraphPathFinding\GraphPathFinding\Resources\worldMap.png", true);
+			var bitmap = new Bitmap(bitmapPath, true);
 
 			CompositionMethod(bitmap);
 
